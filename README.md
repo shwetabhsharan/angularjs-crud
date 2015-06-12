@@ -1,0 +1,2 @@
+# angularjs-crud
+angularjs example
