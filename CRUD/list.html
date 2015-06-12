@@ -7,6 +7,7 @@
         <script src="app.js"></script>
         <script src="controller.js"></script>
         <script src="service.js"></script>
+        <script src="filter.js"></script>
         <script src="directive.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
@@ -14,21 +15,27 @@
     </head>
     <body ng-app="crudApp" ng-controller="crudController">
         <div class="container">
+            <div>
+                Filter Data: <input type="text" ng-model="searchData" />
+            </div>
 	        <table class="table table-bordered">
 	            <thead>
 	                <td>Name</td>
 	                <td>City</td>
 	                <td>Country</td>
+	                <td>Reverse Country</td>
 	            </thead>
 	            <tbody>
-	               <tr ng-repeat="data in response_data">
+	               <tr ng-repeat="data in response_data | filter: searchData">
 	                   <td>{{ data.Name }}</td>
 	                   <td>{{ data.City }}</td>
 	                   <td>{{ data.Country }}</td>
+	                   <td>{{ data.Country | reverseCountry }}</td>
 	               </tr>
 	            </tbody>
 	        </table>
 	    <div>
     </body>
 </html>
+
 
