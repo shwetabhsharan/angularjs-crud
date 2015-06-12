@@ -32,6 +32,7 @@
         <div>
         <div ng-show="created_data" ng-repeat="data in created_data">
         Following data was created successfully:
+        <div>Counter: {{$index + 1}}</div>
         <div>ID: {{data.id}}</div>
         <div>User ID: {{data.userId}}</div>
         <div>Title: {{data.title}}</div>
