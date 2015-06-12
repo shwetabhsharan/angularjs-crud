@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Create Entries</title>
+        <meta charset="utf-8" >
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0-beta.5/angular.min.js"></script>
+        <script src="app.js"></script>
+        <script src="controller.js"></script>
+        <script src="service.js"></script>
+        <script src="directive.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    </head>
+    <body ng-app="crudApp" ng-controller="crudController">
+        <div class="container">
+		<form>
+		  <div class="form-group">
+		    <label for="userId">User ID</label>
+		    <input type="text" class="form-control" placeholder="Enter User ID" ng-model="pub_data.userId">
+		  </div>
+          <div class="form-group">
+            <label for="title">Title</label>
+            <input type="text" class="form-control" placeholder="Enter Title" ng-model="pub_data.title">
+          </div>
+          <div class="form-group">
+            <label for="body">Body</label>
+            <input type="text" class="form-control" placeholder="Enter Body" ng-model="pub_data.body">
+          </div>
+		  <button type="button" class="btn btn-default" ng-click="createEntryButton()">Create</button>
+		</form>
+        <div>
+        <div ng-show="created_data" ng-repeat="data in created_data">
+        Following data was created successfully:
+        <div>ID: {{data.id}}</div>
+        <div>User ID: {{data.userId}}</div>
+        <div>Title: {{data.title}}</div>
+        <div>Body: {{data.body}}</div>
+        </div>
+    </body>
+</html>
+
+
