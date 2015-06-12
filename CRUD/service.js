@@ -24,3 +24,18 @@ app.service("crudService", function($http, $q){
 		return deferred.promise;
 	};
 });
+
+app.service("fetchDataService", function($http, $q){
+	this.fetchDataFunction = function(userId){
+		var deferred = $q.defer();
+		$http.get("http://jsonplaceholder.typicode.com/posts/" + userId).
+		success(function(data){
+			deferred.resolve(data);
+		}).
+		error(function(data){
+			deferred.reject(data);
+		});
+		console.log(deferred.promise);
+		return deferred.promise;
+	}
+})

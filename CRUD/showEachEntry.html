@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Show Individual Entry</title>
+        <meta charset="utf-8" >
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0-beta.5/angular.min.js"></script>
+        <script src="app.js"></script>
+        <script src="controller.js"></script>
+        <script src="service.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    </head>
+    <body ng-app="crudApp" ng-controller="fetchDataController">
+        <div class="container">
+            Enter User ID:<input type="text" ng-model="userId" />
+            <input type="button" ng-click="fetchData()" value="Fetch"/>
+            <div ng-show="selected_data">You searched for:
+            <div>ID: {{selected_data.id}}</div>
+            <div>User ID: {{selected_data.userId}}</div>
+            <div>Title: {{selected_data.title}}</div>
+            <div>Body: {{selected_data.body}}</div>
+        </div>
+    </body>
+</html>
+
+
