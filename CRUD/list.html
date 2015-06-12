@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+    <head>
+        <title>List Entries</title>
+        <meta charset="utf-8" >
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0-beta.5/angular.min.js"></script>
+        <script src="app.js"></script>
+        <script src="controller.js"></script>
+        <script src="service.js"></script>
+        <script src="directive.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    </head>
+    <body ng-app="crudApp" ng-controller="crudController">
+        <div class="container">
+	        <table class="table table-bordered">
+	            <thead>
+	                <td>Name</td>
+	                <td>City</td>
+	                <td>Country</td>
+	            </thead>
+	            <tbody>
+	               <tr ng-repeat="data in response_data">
+	                   <td>{{ data.Name }}</td>
+	                   <td>{{ data.City }}</td>
+	                   <td>{{ data.Country }}</td>
+	               </tr>
+	            </tbody>
+	        </table>
+	    <div>
+    </body>
+</html>
+
