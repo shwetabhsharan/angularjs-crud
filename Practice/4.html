@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+<head>
+    <title>assignment 4</title>
+    <meta charset="utf-8" >
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0-beta.5/angular.min.js"></script>
+    <script>
+    var app = angular.module("myApp", [])
+    app.controller("myController", function($scope){
+    $scope.click1 = function(data1){
+        alert(data1 + "This is concatination" );
+    };
+    $scope.click2 = function(data2){
+        alert(data2 + "This is second conc");
+    }
+    });
+    </script>
+</head>
+<body>
+<div ng-app="myApp" ng-controller="myController">
+<input type="button" value="click 1" ng-click="click1(1);">
+<input type="button" value="click 2" ng-click="click2(2);">
+</div>
+</body>
+</html>
