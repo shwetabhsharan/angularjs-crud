@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+    <title>assignment 4</title>
+    <meta charset="utf-8" >
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0-beta.5/angular.min.js"></script>
+    <script>
+    var app = angular.module("myApp", [])
+
+    app.service("myService", function($q, $http){
+    var listEntry = function(data){
+        var deferred = $q.defer();
+        $http.get("http://www.w3schools.com/angular/customers.php").
+        success(function(data){
+            deferred.resolve(data);
+        }).
+        error(function(data){
+            deferred.reject(data);
+        });
+        return deferred.promise;
+        }
+    });
+
+    app.controller("myController", function($scope, myService){
+        myService.listEntry().then(function(data){
+        $scope.response_data = data;
+        console.log(data);
+    })
+    });
+
+    </script>
+</head>
+<body>
+<div ng-app="myApp" ng-controller="myController">
+
+</div>
+</body>
+</html>
