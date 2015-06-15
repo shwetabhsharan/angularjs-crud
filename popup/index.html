@@ -1,0 +1,84 @@
+<!doctype html>
+<html>
+    <head>
+        <title>PopUp Example</title>
+        <meta charset="utf-8">
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0-beta.5/angular.min.js"></script>
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+        <script>
+
+        // angular app initialization
+        var popupApp = angular.module("popupApp", []);
+
+        // controller initialization
+        popupApp.controller("popupController", function($scope){
+            $scope.showModal = false;
+            $scope.toggleModal = function(){
+                $scope.showModal = !$scope.showModal;
+            };
+        });
+
+        // custom directive
+
+        popupApp.directive("mymodal", function(){
+            var directive = {};
+            directive.restrict = "E";
+            directive.transclude = true;
+            directive.replace = true;
+            directive.scope = true;
+            directive.templateUrl = "popup.html";
+            directive.link = function(scope, element, attrs){
+                scope.title = attrs.title;
+                scope.$watch(attrs.visible, function(value){
+                    if(value==true)
+                        $(element).modal('show');
+                    else
+                        $(element).modal('hide');
+                });
+
+                $(element).on('shown.bs.modal', function(){
+                    scope.$apply(function(){
+                        scope.$parent[attrs.visible] = true;
+                    });
+                });
+
+                $(element).on('hidden.bs.modal', function(){
+                    scope.$apply(function(){
+                        scope.$parent[attrs.visible] = false;
+                    });
+                });
+
+            };
+            console.log(directive);
+            return directive;
+        });
+        </script>
+    </head>
+
+    <body ng-app="popupApp">
+
+        <div ng-controller="popupController">
+        <h1>Modal Example</h1>
+        <button type="button" class="btn btn-default" ng-click="toggleModal()">Login</button>
+
+        <mymodal title="Login Form" visible="showModal">
+            <form role="form">
+                <div class="form-group">
+                    <label for="email">Email address</label>
+                    <input type="email" class="form-control" id="email" placeholder="Enter email" />
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" class="form-control" id="password" placeholder="Password" />
+                </div>
+
+                <button type="submit" class="btn btn-default">Submit</button>
+            </form>
+        </mymodal>
+        </div>
+    </body>
+</html>
