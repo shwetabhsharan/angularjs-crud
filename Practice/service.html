@@ -7,20 +7,6 @@
     <script>
     var app = angular.module("myApp", [])
 
-    app.service("myService", function($q, $http){
-    var listEntry = function(data){
-        var deferred = $q.defer();
-        $http.get("http://www.w3schools.com/angular/customers.php").
-        success(function(data){
-            deferred.resolve(data);
-        }).
-        error(function(data){
-            deferred.reject(data);
-        });
-        return deferred.promise;
-        }
-    });
-
     app.controller("myController", function($scope, myService){
         myService.listEntry().then(function(data){
         $scope.response_data = data;
@@ -28,11 +14,41 @@
     })
     });
 
+    app.service("myService", function($q, $http){
+        this.listEntry = function(data){
+            var deferred = $q.defer();
+            $http.get("http://www.w3schools.com/angular/customers.php").
+            success(function(data){
+                deferred.resolve(data);
+                }).
+            error(function(data){
+                deferred.reject(data);
+            });
+            return deferred.promise;
+        }
+    });
+
+
     </script>
 </head>
 <body>
 <div ng-app="myApp" ng-controller="myController">
-
+<table>
+    <thead>
+        <tr>
+            <td>Name</td>
+            <td>City</td>
+            <td>Country</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="data in response_data.records">
+            <td>{{data.Name}}</td>
+            <td>{{data.City}}</td>
+            <td>{{data.Country}}</td>
+        </tr>
+    </tbody>
+</table>
 </div>
 </body>
 </html>
