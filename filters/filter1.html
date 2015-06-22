@@ -1,0 +1,17 @@
+<!doctype html>
+<html>
+<head>
+    <title>Filter1</title>
+    <meta charset="utf-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0-beta.5/angular.min.js"></script>
+    <script>
+        var app = angular.module("myApp", []);
+        app.controller("myController", ["$scope", function($scope){
+            $scope.currency = 100;
+        }]);
+    </script>
+</head>
+<body ng-app="myApp" ng-controller="myController">
+    <input type="text" ng-model="currency" /> {{currency | filter: currency : $ : 2}}
+</body>
+</html>

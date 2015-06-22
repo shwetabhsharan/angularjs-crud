@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+<head>
+    <title>Directive 1</title>
+    <meta charset="utf-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0-beta.5/angular.min.js"></script>
+    <script>
+        // angular app instantiation
+        var myapp = angular.module("myApp", [])
+
+        // controller
+        myapp.controller("myController", ["$scope", function($scope){
+            $scope.userinfo = {};
+            $scope.userinfo.firstName = "Shwetabh";
+            $scope.userinfo.lastName  = "Sharan";
+        }]);
+
+        // directive
+        myapp.directive("mydirective", function(){
+            var directive = {};
+            directive.restrict = "E";
+            directive.transclude = true;
+            directive.template = "<div><input type='text' ng-model='username.firstName' placeholder='Enter First Name' /><input type='text' ng-model='username.lastName' placeholder='Enter Last Name' /></div>";
+            directive.scope = {};
+            return directive;
+        });
+    </script>
+</head>
+<body ng-app="myApp" ng-controller="myController">
+    <mydirective>Husband's Name: </mydirective>
+    <mydirective>Wife's Name: </mydirective>
+</body>
+</html>
