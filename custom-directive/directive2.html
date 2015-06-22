@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+<head>
+    <title>Directive 2</title>
+    <meta charset="utf-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0-beta.5/angular.min.js"></script>
+    <script>
+        var myapp = angular.module("myApp", [])
+        myapp.controller("myController", ["$scope", function($scope){
+            $scope.firstName = "Shwetabh";
+            $scope.lastName = "Sharan";
+        }]);
+        myapp.directive("mydirective", function(){
+            var directive = {};
+            directive.restrict = "E";
+            directive.scope = {};
+            directive.template = "hello brother";
+            directive.link = function($scope, element, attribute){
+                //element.html("HTML content via link function");
+                element.css("background-color", "#ffff00");
+            };
+            return directive;
+        });
+    </script>
+</head>
+<body ng-app="myApp" ng-controller="myController">
+    <mydirective>This text will be replaced</mydirective>
+</body>
+</html>
